@@ -6,7 +6,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.scene.control.Alert;
 import libiary.assistant.Util.DataBaseConfigManeger;
 import libiary.assistant.Util.DataBaseProperty;
 
@@ -33,11 +32,12 @@ public class Database {
         try {
             Class.forName("com.mysql.jdbc.Driver");
         } catch (ClassNotFoundException ex) {
+            System.out.println("Driver not Found");
             Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
         }
         DataBaseConfigManeger dbManger = new DataBaseConfigManeger();
         DataBaseProperty dbPropety = dbManger.getDatabaseProperry();
-
+        
         con = DriverManager.getConnection("jdbc:mysql://" + dbPropety.getHost() + ":" + dbPropety.getPort() + "/", dbPropety.getUser(), dbPropety.getPassword());
         System.out.println("Connected to DataBase Successfully");
 
